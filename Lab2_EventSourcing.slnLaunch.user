@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Training.Producer.API\\Training.Producer.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Training.Notifications.Consumer\\Training.Notifications.Consumer.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
