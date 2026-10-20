@@ -1,0 +1,11 @@
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\bin\Debug\net9.0\Training.Contracts.deps.json
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\bin\Debug\net9.0\Training.Contracts.dll
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\bin\Debug\net9.0\Training.Contracts.pdb
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.AssemblyInfoInputs.cache
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.AssemblyInfo.cs
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.dll
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\refint\Training.Contracts.dll
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\Training.Contracts.pdb
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Contracts\obj\Debug\net9.0\ref\Training.Contracts.dll

@@ -1,0 +1,317 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{38263F13-D1E7-4E82-822A-D307E1839274}|Training.Notifications.Consumer\\Training.Notifications.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.notifications.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38263F13-D1E7-4E82-822A-D307E1839274}|Training.Notifications.Consumer\\Training.Notifications.Consumer.csproj|solutionrelative:training.notifications.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\domain\\trainingaggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\domain\\trainingaggregate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.contracts\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|solutionrelative:training.contracts\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.projection.consumer\\readmodel\\athletestatsview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|solutionrelative:training.projection.consumer\\readmodel\\athletestatsview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.projection.consumer\\readmodel\\trainingview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|solutionrelative:training.projection.consumer\\readmodel\\trainingview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.projection.consumer\\projections\\trainingprojector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|solutionrelative:training.projection.consumer\\projections\\trainingprojector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\controllers\\trainingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\dto\\requests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\dto\\requests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\training.producer.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\training.producer.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\infrastructure\\rabbitmqpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\infrastructure\\rabbitmqpublisher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\infrastructure\\inmemoryeventstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\infrastructure\\inmemoryeventstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.producer.api\\domain\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3EADB34-A709-4C92-BACB-1BB4668EB8FD}|Training.Producer.API\\Training.Producer.API.csproj|solutionrelative:training.producer.api\\domain\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.projection.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|solutionrelative:training.projection.consumer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.projection.consumer\\training.projection.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D08782F6-D04B-457A-8AFE-47628F899CB7}|Training.Projection.Consumer\\Training.Projection.Consumer.csproj|solutionrelative:training.projection.consumer\\training.projection.consumer.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.contracts\\eventrouting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|solutionrelative:training.contracts\\eventrouting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|c:\\users\\dl5521\\desktop\\lpnu\\softwarearchitecture\\lab_2\\lab2_eventsourcing\\training.contracts\\ievent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30F2DFA9-5530-49DB-BA37-EB19C0028A42}|Training.Contracts\\Training.Contracts.csproj|solutionrelative:training.contracts\\ievent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Notifications.Consumer\\Program.cs",
+              "RelativeDocumentMoniker": "Training.Notifications.Consumer\\Program.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Notifications.Consumer\\Program.cs",
+              "RelativeToolTip": "Training.Notifications.Consumer\\Program.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAgwFUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:59:33.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TrainingView.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\ReadModel\\TrainingView.cs",
+              "RelativeDocumentMoniker": "Training.Projection.Consumer\\ReadModel\\TrainingView.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\ReadModel\\TrainingView.cs",
+              "RelativeToolTip": "Training.Projection.Consumer\\ReadModel\\TrainingView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:47:43.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Event.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\Event.cs",
+              "RelativeDocumentMoniker": "Training.Contracts\\Event.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\Event.cs",
+              "RelativeToolTip": "Training.Contracts\\Event.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAA5wD8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:41:29.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TrainingAggregate.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Domain\\TrainingAggregate.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Domain\\TrainingAggregate.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Domain\\TrainingAggregate.cs",
+              "RelativeToolTip": "Training.Producer.API\\Domain\\TrainingAggregate.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAAAJMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:10:53.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AthleteStatsView.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\ReadModel\\AthleteStatsView.cs",
+              "RelativeDocumentMoniker": "Training.Projection.Consumer\\ReadModel\\AthleteStatsView.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\ReadModel\\AthleteStatsView.cs",
+              "RelativeToolTip": "Training.Projection.Consumer\\ReadModel\\AthleteStatsView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:47:56.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TrainingProjector.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Projections\\TrainingProjector.cs",
+              "RelativeDocumentMoniker": "Training.Projection.Consumer\\Projections\\TrainingProjector.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Projections\\TrainingProjector.cs",
+              "RelativeToolTip": "Training.Projection.Consumer\\Projections\\TrainingProjector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJkAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:47:24.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Program.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Program.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Program.cs",
+              "RelativeToolTip": "Training.Producer.API\\Program.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAABkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:01:42.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TrainingsController.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Controllers\\TrainingsController.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Controllers\\TrainingsController.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Controllers\\TrainingsController.cs",
+              "RelativeToolTip": "Training.Producer.API\\Controllers\\TrainingsController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwDQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:13:46.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Requests.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Dto\\Requests.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Dto\\Requests.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Dto\\Requests.cs",
+              "RelativeToolTip": "Training.Producer.API\\Dto\\Requests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:13:17.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RabbitMqPublisher.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Infrastructure\\RabbitMqPublisher.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Infrastructure\\RabbitMqPublisher.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Infrastructure\\RabbitMqPublisher.cs",
+              "RelativeToolTip": "Training.Producer.API\\Infrastructure\\RabbitMqPublisher.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwFIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:12:37.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Training.Producer.API",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Training.Producer.API.csproj",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Training.Producer.API.csproj",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Training.Producer.API.csproj",
+              "RelativeToolTip": "Training.Producer.API\\Training.Producer.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-18T18:09:50.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "InMemoryEventStore.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Infrastructure\\InMemoryEventStore.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Infrastructure\\InMemoryEventStore.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Infrastructure\\InMemoryEventStore.cs",
+              "RelativeToolTip": "Training.Producer.API\\Infrastructure\\InMemoryEventStore.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:12:14.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DomainException.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Domain\\DomainException.cs",
+              "RelativeDocumentMoniker": "Training.Producer.API\\Domain\\DomainException.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Producer.API\\Domain\\DomainException.cs",
+              "RelativeToolTip": "Training.Producer.API\\Domain\\DomainException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T18:10:19.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Program.cs",
+              "RelativeDocumentMoniker": "Training.Projection.Consumer\\Program.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Program.cs",
+              "RelativeToolTip": "Training.Projection.Consumer\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAD8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:58:07.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Training.Projection.Consumer",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+              "RelativeDocumentMoniker": "Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+              "RelativeToolTip": "Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-18T17:46:35.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EventRouting.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\EventRouting.cs",
+              "RelativeDocumentMoniker": "Training.Contracts\\EventRouting.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\EventRouting.cs",
+              "RelativeToolTip": "Training.Contracts\\EventRouting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:43:08.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IEvent.cs",
+              "DocumentMoniker": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\IEvent.cs",
+              "RelativeDocumentMoniker": "Training.Contracts\\IEvent.cs",
+              "ToolTip": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Contracts\\IEvent.cs",
+              "RelativeToolTip": "Training.Contracts\\IEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T17:41:02.154Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

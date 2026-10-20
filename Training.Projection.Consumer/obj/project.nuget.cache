@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "LiWi62N0Rb8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\DL5521\\Desktop\\LPNU\\SoftwareArchitecture\\Lab_2\\Lab2_EventSourcing\\Training.Projection.Consumer\\Training.Projection.Consumer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DL5521\\.nuget\\packages\\rabbitmq.client\\7.2.2\\rabbitmq.client.7.2.2.nupkg.sha512",
+    "C:\\Users\\DL5521\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\DL5521\\.nuget\\packages\\system.threading.ratelimiting\\8.0.0\\system.threading.ratelimiting.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
