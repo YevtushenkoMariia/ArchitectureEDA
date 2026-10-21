@@ -4,6 +4,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Training.Contracts;
 
+
 Console.OutputEncoding = Encoding.UTF8;
 
 const string QueueName = "notifications";
@@ -11,9 +12,15 @@ const string QueueName = "notifications";
 // Фільтр: тільки події, про які треба сповістити користувача
 string[] bindingKeys =
 [
-    "*.assigned", "*.completed", "*.reviewed", "*.cancelled",
-    "*.details_updated", "*.exercise_added", "*.exercise_removed"
+    "*.assigned", 
+    "*.completed", 
+    "*.reviewed", 
+    "*.cancelled",
+    "*.details_updated", 
+    "*.exercise_added", 
+    "*.exercise_removed"
 ];
+
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = await factory.CreateConnectionAsync();
 using var channel = await connection.CreateChannelAsync();
@@ -48,26 +55,7 @@ consumer.ReceivedAsync += async (_, ea) =>
         var @event = (IEvent)JsonSerializer.Deserialize(json, eventType)!;
 
         // Шаблон { AthleteId: Guid athlete } спрацьовує лише тоді, коли AthleteId НЕ null
-        var notification = @event switch
-        {
-            TrainingAssigned a =>
-                $"Спортсмену {a.AthleteId}: вам призначено нове тренування {a.TrainingId}.",
-            TrainingCompleted c =>
-                $"Тренеру: спортсмен {c.AthleteId} виконав тренування {c.TrainingId}. " +
-                $"Самооцінка стану: {c.StateRating}/10" + (string.IsNullOrWhiteSpace(c.Comment) ? "." : $", коментар: «{c.Comment}»."),
-            TrainingReviewed r =>
-                $"Спортсмену: тренер оцінив ваше тренування {r.TrainingId} на {r.Score}/10" +
-                (string.IsNullOrWhiteSpace(r.Comment) ? "." : $" — «{r.Comment}»."),
-            TrainingCancelled { AthleteId: Guid athlete } x =>
-                $"Спортсмену {athlete}: тренування {x.TrainingId} скасовано. Причина: {x.Reason}.",
-            TrainingDetailsUpdated { AthleteId: Guid athlete } u =>
-                $"Спортсмену {athlete}: у тренуванні {u.TrainingId} змінено деталі — «{u.Title}», {u.Date:dd.MM.yyyy HH:mm}.",
-            ExerciseAdded { AthleteId: Guid athlete } x =>
-                $"Спортсмену {athlete}: до тренування {x.TrainingId} додано вправу «{x.Name}» ({x.DurationMinutes} хв).",
-            ExerciseRemoved { AthleteId: Guid athlete } x =>
-                $"Спортсмену {athlete}: з тренування {x.TrainingId} прибрано вправу #{x.ExerciseId}.",
-            _ => null
-        };
+        var notification = BuildNotification(@event);
 
         if (notification is not null)
         {
@@ -107,3 +95,66 @@ static string? GetHeader(IReadOnlyBasicProperties props, string key) =>
     props.Headers is not null && props.Headers.TryGetValue(key, out var value) && value is byte[] bytes
         ? Encoding.UTF8.GetString(bytes)
         : null;
+
+string? BuildNotification(IEvent @event)
+{
+    switch (@event)
+    {
+        case TrainingAssigned a:
+            return $"Спортсмену {a.AthleteId}: вам призначено нове тренування {a.TrainingId}.";
+
+        case TrainingCompleted c:
+            {
+                string text = $"Тренеру: спортсмен {c.AthleteId} виконав тренування {c.TrainingId}. " +
+                              $"Самооцінка стану: {c.StateRating}/10";
+
+                if (string.IsNullOrWhiteSpace(c.Comment))
+                    text += ".";
+                else
+                    text += $", коментар: «{c.Comment}».";
+
+                return text;
+            }
+
+        case TrainingReviewed r:
+            {
+                string text = $"Спортсмену: тренер оцінив ваше тренування {r.TrainingId} на {r.Score}/10";
+
+                if (string.IsNullOrWhiteSpace(r.Comment))
+                    text += ".";
+                else
+                    text += $" — «{r.Comment}».";
+
+                return text;
+            }
+
+        case TrainingCancelled x:
+            if (x.AthleteId == null)
+                return null;
+
+            return $"Спортсмену {x.AthleteId.Value}: тренування {x.TrainingId} скасовано. Причина: {x.Reason}.";
+
+        case TrainingDetailsUpdated u:
+            if (u.AthleteId == null)
+                return null;
+
+            return $"Спортсмену {u.AthleteId.Value}: у тренуванні {u.TrainingId} змінено деталі — " +
+                   $"«{u.Title}», {u.Date:dd.MM.yyyy HH:mm}.";
+
+        case ExerciseAdded ea:
+            if (ea.AthleteId == null)
+                return null;
+
+            return $"Спортсмену {ea.AthleteId.Value}: до тренування {ea.TrainingId} додано вправу " +
+                   $"«{ea.Name}» ({ea.DurationMinutes} хв).";
+
+        case ExerciseRemoved er:
+            if (er.AthleteId == null)
+                return null;
+
+            return $"Спортсмену {er.AthleteId.Value}: з тренування {er.TrainingId} прибрано вправу #{er.ExerciseId}.";
+
+        default:
+            return null;
+    }
+}

@@ -8,13 +8,13 @@ namespace Training.Contracts
 {
     public interface IEvent
     {
-        Guid EventId { get; }        // унікальний ідентифікатор події
-        Guid TrainingId { get; }     // ідентифікатор потоку (до якого тренування належить)
-        DateTime Timestamp { get; }  // коли подія сталася
+        Guid EventId { get; }        
+        Guid TrainingId { get; }     // ідентифікатор потоку 
+        DateTime Timestamp { get; } 
         int Version { get; set; }    // порядковий номер у потоці
     }
 
-    public abstract record EventBase : IEvent
+    public abstract class EventBase : IEvent
     {
         public Guid EventId { get; init; } = Guid.NewGuid();
         public Guid TrainingId { get; init; }

@@ -14,7 +14,9 @@ public sealed class RabbitMqPublisher : IEventPublisher, IAsyncDisposable
 {
     private readonly IConnection _connection;
     private readonly IChannel _channel;
-    private readonly SemaphoreSlim _publishLock = new(1, 1);   // канал не варто використовувати з кількох потоків одночасно
+
+    // для використання каналу тільки один потоком, не кількома одночасно
+    private readonly SemaphoreSlim _publishLock = new(1, 1);   
 
     private RabbitMqPublisher(IConnection connection, IChannel channel)
     {
@@ -23,6 +25,7 @@ public sealed class RabbitMqPublisher : IEventPublisher, IAsyncDisposable
     }
 
     // Асинхронна "фабрика": у 7.x підключення асинхронне, а конструктор не може бути async
+    //???
     public static async Task<RabbitMqPublisher> CreateAsync(string hostName)
     {
         var factory = new ConnectionFactory { HostName = hostName };   // логін/пароль за замовчуванням guest/guest
@@ -39,21 +42,26 @@ public sealed class RabbitMqPublisher : IEventPublisher, IAsyncDisposable
         return new RabbitMqPublisher(connection, channel);
     }
 
+
+    //RabbitMQ logic
     public async Task PublishAsync(IEvent @event)
     {
         // Серіалізуємо за РЕАЛЬНИМ типом події, інакше в JSON потраплять лише поля IEvent
         var json = JsonSerializer.Serialize(@event, @event.GetType());
         var body = Encoding.UTF8.GetBytes(json);
+
+        // routing key залежить від типу події
         var routingKey = EventRouting.GetRoutingKey(@event);
 
         var props = new BasicProperties
         {
             ContentType = "application/json",
-            Persistent = true,                          // повідомлення зберігається на диск
+            Persistent = true,                          
             MessageId = @event.EventId.ToString(),
             Headers = new Dictionary<string, object?>
             {
-                ["EventType"] = @event.GetType().Name   // Consumer за цим заголовком зрозуміє, у який клас десеріалізувати
+                //Додавання типу події
+                ["EventType"] = @event.GetType().Name 
             }
         };
 

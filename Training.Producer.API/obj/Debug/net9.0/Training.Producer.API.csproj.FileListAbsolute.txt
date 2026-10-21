@@ -36,3 +36,4 @@ C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Train
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Producer.API\obj\Debug\net9.0\Training.Producer.API.pdb
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Producer.API\obj\Debug\net9.0\Training.Producer.API.genruntimeconfig.cache
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Producer.API\obj\Debug\net9.0\ref\Training.Producer.API.dll
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Producer.API\obj\Debug\net9.0\Training.Producer.API.sourcelink.json

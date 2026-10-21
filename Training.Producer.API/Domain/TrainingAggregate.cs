@@ -2,13 +2,17 @@
 
 namespace Training.Producer.API.Domain;
 
+
+// Стани агрегату
 public enum TrainingStatus { Draft, Assigned, Completed, Reviewed, Cancelled }
 
 public record ExerciseItem(int Id, string Name, int DurationMinutes, int Repetitions);
 
+
+// Агрегат
 public class TrainingAggregate
 {
-    // ---------- Стан агрегату (тільки те, що потрібно для бізнес-правил) ----------
+    // Стан агрегату 
     public Guid Id { get; private set; }
     public TrainingStatus Status { get; private set; }
     public Guid CoachId { get; private set; }
@@ -16,29 +20,34 @@ public class TrainingAggregate
     public int Version { get; private set; }            // скільки подій вже застосовано
 
     private bool _isCreated;
-    private int _lastExerciseId;                         // для генерації id нових вправ
+
+    // вправи в тренування
+    private int _lastExerciseId;                        
     private readonly List<ExerciseItem> _exercises = new();
 
-    // Нові події, які ще не збережені в Event Store
-    private readonly List<IEvent> _uncommittedEvents = new();
-    public IReadOnlyList<IEvent> UncommittedEvents => _uncommittedEvents;
+    // нові події, які ще не збережені в EventStore
+    public List<IEvent> UncommittedEvents = new List<IEvent>();
 
-    // ---------- Відновлення стану з історії (Replay) ----------
+
+    // відновлення стану з історії 
     public static TrainingAggregate FromHistory(IEnumerable<IEvent> history)
     {
         var aggregate = new TrainingAggregate();
         foreach (var e in history)
-            aggregate.Apply(e);          // тільки Apply! Нові події при цьому не створюються
+            aggregate.Apply(e);  
+        
         return aggregate;
     }
 
-    // =====================  КОМАНДИ  =====================
-    // Кожна команда: 1) перевіряє правила  2) створює подію через Raise
-
+    // КОМАНДИ
     public void Create(Guid id, Guid coachId, string title, DateTime date, string? description)
     {
-        if (_isCreated) throw new DomainException("Тренування вже створене.");
-        if (coachId == Guid.Empty) throw new DomainException("Не вказано тренера.");
+        if (_isCreated) 
+            throw new DomainException("Тренування вже створене");
+
+        if (coachId == Guid.Empty) 
+            throw new DomainException("Не вказано тренера");
+
         ValidateDetails(title, date);
 
         Raise(new TrainingCreated
@@ -54,13 +63,17 @@ public class TrainingAggregate
     public void AddExercise(string name, int durationMinutes, int repetitions)
     {
         EnsureEditable();
-        if (string.IsNullOrWhiteSpace(name)) throw new DomainException("Назва вправи не може бути порожньою.");
-        if (durationMinutes <= 0) throw new DomainException("Тривалість вправи має бути більшою за 0.");
+
+        if (string.IsNullOrWhiteSpace(name)) 
+            throw new DomainException("Назва вправи не може бути порожньою");
+
+        if (durationMinutes <= 0) 
+            throw new DomainException("Тривалість вправи має бути більшою за 0");
 
         Raise(new ExerciseAdded
         {
             TrainingId = Id,
-            ExerciseId = _lastExerciseId + 1,   // id присвоює агрегат
+            ExerciseId = _lastExerciseId + 1,   
             Name = name,
             DurationMinutes = durationMinutes,
             Repetitions = repetitions,
@@ -73,8 +86,11 @@ public class TrainingAggregate
         EnsureEditable();
         if (_exercises.All(e => e.Id != exerciseId))
             throw new DomainException($"Вправу з id {exerciseId} не знайдено в тренуванні.");
+       
+
+        //?
         if (Status == TrainingStatus.Assigned && _exercises.Count == 1)
-            throw new DomainException("Не можна видалити останню вправу з призначеного тренування.");
+            throw new DomainException("Не можна видалити останню вправу з призначеного тренування");
 
         Raise(new ExerciseRemoved { 
             TrainingId = Id, 
@@ -101,46 +117,70 @@ public class TrainingAggregate
     {
         EnsureCreated();
         if (Status != TrainingStatus.Draft)
-            throw new DomainException($"Призначити можна лише тренування у стані Draft (поточний: {Status}).");
+            throw new DomainException($"Призначити можна лише тренування у стані Draft (поточний: {Status})");
+      
         if (_exercises.Count == 0)
-            throw new DomainException("Не можна призначити тренування без жодної вправи.");
-        if (athleteId == Guid.Empty) throw new DomainException("Не вказано спортсмена.");
+            throw new DomainException("Не можна призначити тренування без жодної вправи");
+        
+        if (athleteId == Guid.Empty) 
+            throw new DomainException("Не вказано спортсмена");
 
-        Raise(new TrainingAssigned { TrainingId = Id, AthleteId = athleteId });
+        Raise(new TrainingAssigned { 
+            TrainingId = Id, 
+            AthleteId = athleteId 
+        });
     }
 
     public void Complete(Guid athleteId, int stateRating, string? comment)
     {
         EnsureCreated();
         if (Status != TrainingStatus.Assigned)
-            throw new DomainException($"Відмітити виконання можна лише для призначеного тренування (поточний: {Status}).");
+            throw new DomainException($"Відмітити виконання можна лише для призначеного тренування (поточний: {Status})");
+       
         if (athleteId != AthleteId)
-            throw new DomainException("Відмітити виконання може лише спортсмен, якому призначено тренування.");
+            throw new DomainException("Відмітити виконання може лише спортсмен, якому призначено тренування");
         if (stateRating is < 1 or > 10)
-            throw new DomainException("Оцінка стану має бути від 1 до 10.");
+            throw new DomainException("Оцінка стану має бути від 1 до 10");
 
-        Raise(new TrainingCompleted { TrainingId = Id, AthleteId = athleteId, StateRating = stateRating, Comment = comment });
+        Raise(new TrainingCompleted { 
+            TrainingId = Id, 
+            AthleteId = athleteId, 
+            StateRating = stateRating, 
+            Comment = comment 
+        });
     }
 
     public void Review(Guid coachId, int score, string? comment)
     {
         EnsureCreated();
         if (Status != TrainingStatus.Completed)
-            throw new DomainException($"Відгук можна надати лише на виконане тренування (поточний: {Status}).");
+            throw new DomainException($"Відгук можна надати лише на виконане тренування (поточний: {Status})");
+       
         if (coachId != CoachId)
-            throw new DomainException("Відгук може надати лише тренер, який створив тренування.");
+            throw new DomainException("Відгук може надати лише тренер, який створив тренування");
+        
         if (score is < 1 or > 10)
-            throw new DomainException("Оцінка має бути від 1 до 10.");
+            throw new DomainException("Оцінка має бути від 1 до 10");
 
-        Raise(new TrainingReviewed { TrainingId = Id, CoachId = coachId, Score = score, Comment = comment });
+        Raise(new TrainingReviewed { 
+            TrainingId = Id, 
+            CoachId = coachId, 
+            Score = score, 
+            Comment = comment 
+        });
     }
 
     public void Cancel(string reason)
     {
         EnsureCreated();
-        if (Status is TrainingStatus.Completed or TrainingStatus.Reviewed or TrainingStatus.Cancelled)
-            throw new DomainException($"Не можна скасувати тренування у стані {Status}.");
-        if (string.IsNullOrWhiteSpace(reason)) throw new DomainException("Вкажіть причину скасування.");
+
+        if (Status is TrainingStatus.Completed 
+            or TrainingStatus.Reviewed 
+            or TrainingStatus.Cancelled)
+            throw new DomainException($"Не можна скасувати тренування у стані {Status}");
+
+        if (string.IsNullOrWhiteSpace(reason)) 
+            throw new DomainException("Вкажіть причину скасування");
 
         Raise(new TrainingCancelled { 
             TrainingId = Id, 
@@ -149,18 +189,15 @@ public class TrainingAggregate
         });
     }
 
-    // =====================  ЗАСТОСУВАННЯ ПОДІЙ  =====================
-
-    // Raise = "подія відбулася": присвоюємо номер, змінюємо стан, запам'ятовуємо як нову
+    // ЗАСТОСУВАННЯ ПОДІЙ 
+    // подія відбулася
     private void Raise(EventBase e)
     {
         e.Version = Version + 1;
         Apply(e);
-        _uncommittedEvents.Add(e);
+        UncommittedEvents.Add(e);
     }
 
-    // ЄДИНЕ місце, де змінюється стан. Тут НЕМАЄ перевірок:
-    // подія — це факт, що вже стався, його не можна "відхилити".
     private void Apply(IEvent e)
     {
         switch (e)
@@ -197,23 +234,26 @@ public class TrainingAggregate
         Version = e.Version;
     }
 
-    // =====================  ДОПОМІЖНІ ПЕРЕВІРКИ  =====================
-
+    //  ПЕРЕВІРКИ  
     private void EnsureCreated()
     {
-        if (!_isCreated) throw new DomainException("Тренування не створене.");
+        if (!_isCreated) 
+            throw new DomainException("Тренування не створено");
     }
 
     private void EnsureEditable()
     {
         EnsureCreated();
         if (Status is not (TrainingStatus.Draft or TrainingStatus.Assigned))
-            throw new DomainException($"Редагувати можна лише у станах Draft або Assigned (поточний: {Status}).");
+            throw new DomainException($"Редагувати можна лише у станах Draft або Assigned (поточний: {Status})");
     }
 
     private static void ValidateDetails(string title, DateTime date)
     {
-        if (string.IsNullOrWhiteSpace(title)) throw new DomainException("Назва тренування не може бути порожньою.");
-        if (date.Date < DateTime.Today) throw new DomainException("Дата тренування не може бути в минулому.");
+        if (string.IsNullOrWhiteSpace(title)) 
+            throw new DomainException("Назва тренування не може бути порожньою");
+
+        if (date.Date < DateTime.Today) 
+            throw new DomainException("Дата тренування не може бути в минулому");
     }
 }

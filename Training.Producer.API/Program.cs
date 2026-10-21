@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Singleton: один екземпл€р на весь час роботи Ч ≥накше "база" очищалась би з кожним запитом
-builder.Services.AddSingleton<InMemoryEventStore>();
+builder.Services.AddSingleton<EventStore>();
 
 // ѕ≥дключаЇмось до RabbitMQ один раз при старт≥
 var publisher = await RabbitMqPublisher.CreateAsync("localhost");

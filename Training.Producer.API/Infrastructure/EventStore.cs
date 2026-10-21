@@ -4,21 +4,28 @@ namespace Training.Producer.API.Infrastructure;
 
 public class ConcurrencyException(string message) : Exception(message);
 
-public class InMemoryEventStore
-{
-    // Ключ — id тренування (ідентифікатор потоку), значення — потік подій
-    private readonly Dictionary<Guid, List<IEvent>> _streams = new();
-    private readonly object _lock = new();   // контролер обробляє запити паралельно
 
+// для зберігання станів агрегату, замість БД
+public class EventStore
+{
+    
+    private readonly Dictionary<Guid, List<IEvent>> _streams = new();
+
+    // контролер обробляє запити паралельно
+    private readonly object _lock = new();   
+
+
+    // Отримання всіх подій для тренування 
     public IReadOnlyList<IEvent> GetEvents(Guid trainingId)
     {
         lock (_lock)
             return _streams.TryGetValue(trainingId, out var stream) ? stream.ToList() : [];
     }
 
-    public void Append(Guid trainingId, IReadOnlyList<IEvent> newEvents)
+    public void SaveEvents(Guid trainingId, IReadOnlyList<IEvent> newEvents)
     {
-        if (newEvents.Count == 0) return;
+        if (newEvents.Count == 0) 
+            return;
 
         lock (_lock)
         {
@@ -28,8 +35,9 @@ public class InMemoryEventStore
                 _streams[trainingId] = stream;
             }
 
-            // Optimistic concurrency: перша нова подія має йти одразу за останньою збереженою
             var expectedVersion = stream.Count + 1;
+
+            // перевірка версії першої нової події 
             if (newEvents[0].Version != expectedVersion)
                 throw new ConcurrencyException(
                     $"Конфлікт версій: очікувалась версія {expectedVersion}, отримано {newEvents[0].Version}. Повторіть запит.");

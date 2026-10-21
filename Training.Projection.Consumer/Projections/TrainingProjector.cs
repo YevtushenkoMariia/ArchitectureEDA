@@ -17,7 +17,6 @@ namespace Training.Projection.Consumer.Projections
         private readonly Dictionary<Guid, AthleteStatsView> _athletes = new();
         private readonly object _lock = new();
 
-
         public void Project(IEvent e)
         {
             lock (_lock)
@@ -27,7 +26,7 @@ namespace Training.Projection.Consumer.Projections
 
                     if (_trainings.ContainsKey(created.TrainingId))
                     {
-                        Console.WriteLine($"[Дублікат] {created.TrainingId} вже існує — пропускаємо");
+                        Console.WriteLine($"[Дублікат] {created.TrainingId} вже існує (skip)");
                         return;
                     }
 
@@ -48,28 +47,33 @@ namespace Training.Projection.Consumer.Projections
 
                 }
 
-                // ---------- Усі інші події оновлюють існуючу картку ----------
                 if (!_trainings.TryGetValue(e.TrainingId, out var view))
                 {
-                    Console.WriteLine($"[Eventual consistency] Подія {e.GetType().Name} для невідомого тренування {e.TrainingId}. " +
-                                      "Ймовірно, TrainingCreated надійшла до того, як була створена черга.");
+                    Console.WriteLine($"[Eventual consistency] Подія {e.GetType().Name} для невідомого тренування {e.TrainingId}. ");
                     return;
                 }
 
                 if (e.Version <= view.Version)
                 {
-                    Console.WriteLine($"[Дублікат] {e.GetType().Name} v{e.Version} вже оброблено (поточна v{view.Version}) — пропускаємо");
+                    Console.WriteLine($"[Дублікат] {e.GetType().Name} v{e.Version} вже оброблено (поточна v{view.Version}) ");
                     return;
                 }
 
                 // Пропуск у послідовності: якась подія загубилась
-                if (e.Version > view.Version + 1)
+                if (e.Version > view.Version + 1) {
                     Console.WriteLine($"[Попередження] Очікувалась v{view.Version + 1}, отримано v{e.Version} — частину подій пропущено");
+                }
+
 
                 switch (e)
                 {
                     case ExerciseAdded x:
-                        view.Exercises.Add(new ExerciseView(x.ExerciseId, x.Name, x.DurationMinutes, x.Repetitions));
+                        view.Exercises.Add(new ExerciseView(
+                            x.ExerciseId,
+                            x.Name, 
+                            x.DurationMinutes, 
+                            x.Repetitions
+                        ));
                         break;
 
                     case ExerciseRemoved r:
@@ -92,7 +96,9 @@ namespace Training.Projection.Consumer.Projections
                         view.Status = "Completed";
                         view.StateRating = c.StateRating;
                         view.AthleteComment = c.Comment;
+
                         var stats = GetStats(c.AthleteId);
+
                         stats.CompletedCount++;
                         stats.TotalMinutes += view.TotalDurationMinutes;
                         stats.StateRatings.Add(c.StateRating);
@@ -102,16 +108,19 @@ namespace Training.Projection.Consumer.Projections
                         view.Status = "Reviewed";
                         view.CoachScore = rv.Score;
                         view.CoachComment = rv.Comment;
-                        // У події немає AthleteId — беремо його з картки (вона вже знає, кому призначено)
+                     
                         if (view.AthleteId is Guid athleteId)
                             GetStats(athleteId).CoachScores.Add(rv.Score);
+
                         break;
 
                     case TrainingCancelled cn:
                         view.Status = "Cancelled";
                         view.CancelReason = cn.Reason;
+
                         if (view.AthleteId is Guid cancelledFor)
                             GetStats(cancelledFor).CancelledCount++;
+
                         break;
                 }
 

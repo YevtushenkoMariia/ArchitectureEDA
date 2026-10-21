@@ -6,14 +6,25 @@ using System.Threading.Tasks;
 
 namespace Training.Projection.Consumer.ReadModel
 {
+    // для зручності представлення даних
 
-    public record ExerciseView(
-        int Id, 
-        string Name, 
-        int DurationMinutes, 
-        int Repetitions
-        );
+    public class ExerciseView
+    {
+        public int Id { get; init; }
+        public string Name { get; init; }
+        public int DurationMinutes { get; init; }
+        public int Repetitions { get; init; }
 
+        public ExerciseView(int id, string name, int durationMinutes, int repetitions)
+        {
+            Id = id;
+            Name = name;
+            DurationMinutes = durationMinutes;
+            Repetitions = repetitions;
+        }
+    }
+
+ 
     public class TrainingView
     {
         public Guid Id { get; set; }
@@ -37,7 +48,7 @@ namespace Training.Projection.Consumer.ReadModel
         public string? CancelReason { get; set; }
 
 
-        public int Version { get; set; }             // остання застосована подія — для ідемпотентності
+        public int Version { get; set; }             // остання застосована подія 
         public DateTime LastUpdatedAt { get; set; }
 
 

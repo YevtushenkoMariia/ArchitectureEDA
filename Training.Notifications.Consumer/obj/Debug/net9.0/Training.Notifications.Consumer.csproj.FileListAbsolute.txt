@@ -18,3 +18,4 @@ C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Train
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Notifications.Consumer\obj\Debug\net9.0\Training.Notifications.Consumer.pdb
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Notifications.Consumer\obj\Debug\net9.0\Training.Notifications.Consumer.genruntimeconfig.cache
 C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Notifications.Consumer\obj\Debug\net9.0\ref\Training.Notifications.Consumer.dll
+C:\Users\DL5521\Desktop\LPNU\SoftwareArchitecture\Lab_2\Lab2_EventSourcing\Training.Notifications.Consumer\obj\Debug\net9.0\Training.Notifications.Consumer.sourcelink.json

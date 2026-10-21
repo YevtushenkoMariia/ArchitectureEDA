@@ -7,110 +7,137 @@ namespace Training.Producer.API.Controllers;
 
 [ApiController]
 [Route("api/trainings")]
-public class TrainingsController(InMemoryEventStore store, IEventPublisher publisher) : ControllerBase
+public class TrainingsController(EventStore store, IEventPublisher publisher) : ControllerBase
 {
     // ---------- Команди ----------
-
     [HttpPost]
-    public async Task<IActionResult> Create(CreateTrainingRequest r)
+    public async Task<IActionResult> Create(CreateTrainingRequest req)
     {
-        var aggregate = new TrainingAggregate();   // новий агрегат — історії ще немає
+        // новий агрегат 
+        var aggregate = new TrainingAggregate();
+        
         try
         {
-            aggregate.Create(Guid.NewGuid(), r.CoachId, r.Title, r.Date, r.Description);
+            // виконання команди
+            aggregate.Create(Guid.NewGuid(), req.CoachId, req.Title, req.Date, req.Description);
         }
-        catch (DomainException ex)
+        catch (DomainException e)
         {
-            return BadRequest(new { error = ex.Message });
+            return BadRequest(new { error = e.Message });
         }
-        return await SaveAndPublish(aggregate);
+
+        // зберегти і опублікувати подію
+        return await SaveAndPublishEvents(aggregate);
     }
 
+
     [HttpPost("{id:guid}/exercises")]
-    public Task<IActionResult> AddExercise(Guid id, AddExerciseRequest r) =>
-        Execute(id, a => a.AddExercise(r.Name, r.DurationMinutes, r.Repetitions));
+    public async Task<IActionResult> AddExercise(Guid id, AddExerciseRequest r)
+    {
+        return await Execute(id, a =>
+            a.AddExercise(r.Name, r.DurationMinutes, r.Repetitions));
+    }
 
     [HttpDelete("{id:guid}/exercises/{exerciseId:int}")]
-    public Task<IActionResult> RemoveExercise(Guid id, int exerciseId) =>
-        Execute(id, a => a.RemoveExercise(exerciseId));
+    public async Task<IActionResult> RemoveExercise(Guid id, int exerciseId) { 
+         return await Execute(id, a =>
+            a.RemoveExercise(exerciseId));
+    }
 
     [HttpPut("{id:guid}/details")]
-    public Task<IActionResult> UpdateDetails(Guid id, UpdateTrainingDetailsRequest r) =>
-        Execute(id, a => a.UpdateDetails(r.Title, r.Date, r.Description));
+    public async Task<IActionResult> UpdateDetails(Guid id, UpdateTrainingDetailsRequest r)
+    {
+        return await Execute(id, a =>
+            a.UpdateDetails(r.Title, r.Date, r.Description));
+    }
 
     [HttpPost("{id:guid}/assign")]
-    public Task<IActionResult> Assign(Guid id, AssignTrainingRequest r) =>
-        Execute(id, a => a.Assign(r.AthleteId));
+    public async Task<IActionResult> Assign(Guid id, AssignTrainingRequest r)
+    {
+        return await Execute(id, a =>
+            a.Assign(r.AthleteId));
+    }
 
     [HttpPost("{id:guid}/complete")]
-    public Task<IActionResult> Complete(Guid id, CompleteTrainingRequest r) =>
-        Execute(id, a => a.Complete(r.AthleteId, r.StateRating, r.Comment));
+    public async Task<IActionResult> Complete(Guid id, CompleteTrainingRequest r)
+    {
+        return await Execute(id, a =>
+            a.Complete(r.AthleteId, r.StateRating, r.Comment));
+    }
 
     [HttpPost("{id:guid}/review")]
-    public Task<IActionResult> Review(Guid id, ReviewTrainingRequest r) =>
-        Execute(id, a => a.Review(r.CoachId, r.Score, r.Comment));
+    public async Task<IActionResult> Review(Guid id, ReviewTrainingRequest r)
+    {
+        return await Execute(id, a =>
+            a.Review(r.CoachId, r.Score, r.Comment));
+    }
 
     [HttpPost("{id:guid}/cancel")]
-    public Task<IActionResult> Cancel(Guid id, CancelTrainingRequest r) =>
-        Execute(id, a => a.Cancel(r.Reason));
+    public async Task<IActionResult> Cancel(Guid id, CancelTrainingRequest r)
+    {
+        return await Execute(id, a =>
+            a.Cancel(r.Reason));
+    }
 
-    // ---------- Перегляд потоку подій (для демонстрації та налагодження) ----------
-    // Увага: це НЕ сторона читання CQRS, а "сирий" журнал зі сторони запису.
+    //Перегляд потоку подій 
     [HttpGet("{id:guid}/events")]
     public IActionResult GetEvents(Guid id)
     {
         var events = store.GetEvents(id);
-        if (events.Count == 0) return NotFound(new { error = $"Тренування {id} не знайдено." });
+        if (events.Count == 0) 
+            return NotFound(new { error = $"Тренування {id} не знайдено" });
 
         return Ok(events.Select(e => new
         {
             e.Version,
             Type = e.GetType().Name,
             e.Timestamp,
-            Data = (object)e      // (object) — щоб серіалізувались усі поля конкретної події
+            Data = (object)e      
         }));
     }
 
-    // ---------- Спільний цикл обробки команди ----------
-
+    // Цикл обробки команди 
     private async Task<IActionResult> Execute(Guid id, Action<TrainingAggregate> command)
     {
-        // 1. Завантажуємо історію
+        // завантаження історії
         var history = store.GetEvents(id);
-        if (history.Count == 0) return NotFound(new { error = $"Тренування {id} не знайдено." });
+        if (history.Count == 0)
+            return NotFound(new { error = $"Тренування {id} не знайдено" });
 
-        // 2. Відновлюємо поточний стан (Replay)
+        // відновлення поточного стану
         var aggregate = TrainingAggregate.FromHistory(history);
 
-        // 3. Виконуємо команду — агрегат перевіряє правила
+        // виконання команди
         try
         {
             command(aggregate);
         }
-        catch (DomainException ex)
+        catch (DomainException e)
         {
-            return BadRequest(new { error = ex.Message });   // команду відхилено, подій немає
+            return BadRequest(new { error = e.Message });   
         }
 
-        // 4–5. Зберігаємо і публікуємо
-        return await SaveAndPublish(aggregate);
+        // зберегти і опублікувати
+        return await SaveAndPublishEvents(aggregate);
     }
 
-    private async Task<IActionResult> SaveAndPublish(TrainingAggregate aggregate)
+    private async Task<IActionResult> SaveAndPublishEvents(TrainingAggregate aggregate)
     {
         var newEvents = aggregate.UncommittedEvents.ToList();
 
         try
         {
-            store.Append(aggregate.Id, newEvents);           // спочатку — в джерело істини
+            // зберегти події агрегата 
+            store.SaveEvents(aggregate.Id, newEvents);           
         }
-        catch (ConcurrencyException ex)
+        catch (ConcurrencyException e)
         {
-            return Conflict(new { error = ex.Message });      // 409
+            return Conflict(new { error = e.Message });     
         }
 
+        // повідомлення про подію інших
         foreach (var e in newEvents)
-            await publisher.PublishAsync(e);                  // потім — повідомляємо світ
+            await publisher.PublishAsync(e);                
 
         return Ok(new
         {

@@ -42,10 +42,10 @@ consumer.ReceivedAsync += async (_, ea) =>
 
         Console.WriteLine($"\n[Отримано] {ea.RoutingKey} | {eventTypeName} v{@event.Version}");
 
-        // Оновлюємо модель читання
+        // оновлення моделі читання
         projector.Project(@event);
 
-        // Підтверджуємо ПІСЛЯ успішного оновлення
+        // Підтвердження ПІСЛЯ успішного оновлення
         await channel.BasicAckAsync(ea.DeliveryTag, multiple: false);
     }
     catch (Exception ex)
@@ -60,13 +60,17 @@ await channel.BasicConsumeAsync(QueueName, autoAck: false, consumer: consumer);
 Console.WriteLine($"[Projection] Черга '{QueueName}' ← '{EventRouting.ExchangeName}' ({BindingKey})");
 Console.WriteLine("[Projection] Команди: list — усі тренування, stats — статистика спортсменів, exit — вихід\n");
 
-// Сторона ЧИТАННЯ: запити до готової моделі, без жодного звернення до Producer чи Event Store
+// Сторона ЧИТАННЯ
 while (true)
 {
     var input = Console.ReadLine()?.Trim().ToLowerInvariant();
-    if (input is null or "exit") break;
-    if (input == "list") projector.PrintAllTrainings();
-    else if (input == "stats") projector.PrintAthleteStats();
+    if (input is null or "exit") 
+        break;
+
+    if (input == "list") 
+        projector.PrintAllTrainings();
+    else if (input == "stats") 
+        projector.PrintAthleteStats();
 }
 
 static string? GetHeader(IReadOnlyBasicProperties props, string key) =>
